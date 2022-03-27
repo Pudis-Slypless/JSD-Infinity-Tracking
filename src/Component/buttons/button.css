@@ -1,0 +1,9 @@
+.Button {
+  width: 5rem;
+  height: 2.5rem;
+  background-color: black;
+  color: aliceblue;
+  margin: auto;
+  padding: auto;
+  font-family: "Josefin Sans", sans-serif;
+}
