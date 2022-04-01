@@ -1,48 +1,27 @@
 import React, { useState } from "react";
 
-import Navbar from "../Component/NavBar/Nav";
-import Button from "../Component/buttons/button";
-import Input from "../Component/Input/input";
-import Post from "../Component/Posts/Post";
+import Main from "../Pages/Main/main";
+import Login from "../Pages/Login/login";
+
+
 
 import "./App.css";
-// import {
-//   BrowserRouter,
-//   Routes,
-//   Route,
-// } from "react-router-dom";
 
-let id = 1;
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-function App() {
-  const [posts, setPosts] = useState([]);
 
-  function addPost(title) {
-    const newPost = { id, title };
-    setPosts([newPost, ...posts]);
-    id += 1;
-  }
 
-  function deletePost(id) {
-    const updatePosts = posts.filter((post) => post.id !== id);
-    setPosts(updatePosts);
-  }
+function App(){
 
   return (
-    <div className="App">
-      <Navbar />
-      <Input addPost={addPost} />
-      <Button />
-      {posts.map((post) => (
-        <Post
-          key={post.id}
-          id={post.id}
-          title={post.title}
-          deletePost={deletePost}
-        />
-      ))}
-    </div>
+   
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/Login" element={<Login />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
-
 export default App;

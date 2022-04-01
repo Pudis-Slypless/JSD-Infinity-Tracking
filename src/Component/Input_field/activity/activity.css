@@ -1,0 +1,11 @@
+.activityField {
+    width: auto;
+    display: flex;
+    justify-content: flex-start;
+
+}
+
+.icon-activity {
+    width: auto;
+    border: 15px;
+}
