@@ -2,10 +2,11 @@
     width: auto;
     display: flex;
     justify-content: flex-start;
-
+    margin-left: 850px;
 }
 
 .icon-activity {
-    width: auto;
-    border: 15px;
+    width: 50px;
+    margin-left: 25px;
+    margin-right: 25px;
 }

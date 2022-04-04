@@ -1,37 +1,13 @@
 import React, { useState } from "react";
+import "./activity.css";
 
-function activity() {
-  const [activity, setActivity] = useState("");
+function Activity(props) {
+  
 
-  const [walk, setWalk] = useState("");
-  const [run, setRun] = useState("");
-  const [swim, setSwim] = useState("");
-  const [bike, setBike] = useState("");
-
-  function onChangeRun(e) {
-    setRun(e.target.value);
-  }
-
-  function onChangeWalk(e) {
-    setWalk(e.target.value);
-  }
-
-  function onChangeSwim(e) {
-    setSwim(e.target.value);
-  }
-
-  function onChangeBike(e) {
-    setBike(e.target.value);
-  }
-
-
-  // switch clickActivity {
-  //   case run : onChangeRun;
-  //   case walk : onChangeWalk;
-  //   case swim : onChangeSwim;
-  //   case bike : onChangeSwim;
-  //   default : throw error("Choose activity")
-  // };
+  const onCLickImage = (type) => {
+    props.setActivity(type);
+    console.log(type);
+  };
 
   return (
     <div className="activityField">
@@ -39,35 +15,34 @@ function activity() {
         src="Icons/running.svg"
         alt="run"
         className="icon-activity"
-        value={run}
-        onChangeRun={onChangeRun}
+        onClick={() => onCLickImage("run")}
       />
 
       <img
         src="Icons/walk.svg"
         alt="walk"
         className="icon-activity"
-        value={walk}
-        onChangeWalk={onChangeWalk}
+        activity="walk"
+        onClick={() => onCLickImage("walk")}
       />
 
       <img
         src="Icons/swimmer.svg"
         alt="swimmer"
         className="icon-activity"
-        value={swim}
-        onChangeSwim={onChangeSwim}
+        activity="swim"
+        onClick={() => onCLickImage("swim")}
       />
 
       <img
         src="Icons/biking.svg"
         alt="biking"
         className="icon-activity"
-        value={bike}
-        onChangeBike={onChangeBike}
+        activity="bike"
+        onClick={() => onCLickImage("bike")}
       />
     </div>
   );
 }
 
-export default activity;
+export default Activity;

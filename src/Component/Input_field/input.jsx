@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import "./input.css";
 
+import Activity from "./activity/activity";
+
 function Input({ addPost }) {
+  const [activity, setActivity] = useState("");
   const [valueDistance, setValueDistance] = useState("");
   const [valueDuration, setValueDuration] = useState("");
   const [valueLocation, setValueLocation] = useState("");
@@ -28,8 +31,10 @@ function Input({ addPost }) {
     setValueDesciption(e.target.value);
   }
 
-  function Post(props) {
+  function Submit(props) {
+    console.log("hello world");
     const valueInput = {
+      Activity: activity,
       Distance: valueDistance,
       duration: valueDuration,
       location: valueLocation,
@@ -37,36 +42,18 @@ function Input({ addPost }) {
     };
 
     addPost(valueInput);
-    // if (valueDistance="number" true) {
-    //   console.log();
-    // } else {
-    //   alert("Invalid!!!!");
-    // }
+
+    if (valueInput.Activity === null) {
+      alert("First name must be filled out");
+      return false;
+    }
   }
 
-  // function onKeyDown(e) {
-  //   const title = e.target.value;
-
-  //   if (e.key === "Enter" && title) {
-  //     addPost(title);
-  //     setInput("");
-  //   }
-  // }
-
   return (
-    // <div className="Input">
-    //   <div className="Input__header"> Create Post </div>
-    //   <input
-    //     className="Input__field"
-    //     type="text"
-    //     value={input}
-    //     onChange={onChange}
-    //     onKeyDown={onKeyDown}
-    //   />
-    // </div>
-
     <form>
       <div className="inputField">
+        <Activity className="iconAc" setActivity={setActivity} />
+
         <div className="topicBox">
           <div className="label">
             <label placeholder="Distance">Distance</label>
@@ -89,7 +76,7 @@ function Input({ addPost }) {
           <div className="box">
             <input
               className="Duration"
-              type="time"
+              type=""
               value={valueDuration}
               onChange={onChangeDuration}
               placeholder="Enter your Duration (Hr : mm)"
@@ -116,7 +103,7 @@ function Input({ addPost }) {
           <div>
             <label placeholder="Desciption">Desciption</label>
           </div>
-          <div className="box"> 
+          <div className="box">
             <input
               className="Desciption"
               type="text"
@@ -131,9 +118,9 @@ function Input({ addPost }) {
           <button
             className="creat-post"
             onChange={onChangeTimeStamp}
-            onClick={Post}
+            onClick={Submit}
           >
-            Post
+            Submit
           </button>
         </div>
       </div>

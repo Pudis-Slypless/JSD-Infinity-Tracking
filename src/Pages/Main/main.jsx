@@ -12,8 +12,8 @@ let id = 1;
 function Main(props) {
   const [posts, setPosts] = useState([]);
 
-  function addPost({ activity, Distance, duration, location, timeStamp }) {
-    const newPost = { id, activity, Distance, duration, location, timeStamp };
+  function addPost({ Activity, Distance, duration, location, timeStamp }) {
+    const newPost = { id, Activity, Distance, duration, location, timeStamp };
     console.log(newPost);
     setPosts([newPost, ...posts]);
     id += 1;
@@ -28,11 +28,11 @@ function Main(props) {
     <div className="App">
       <Navbar />
       <Input addPost={addPost} />
-      {/* <Button /> */}
       {posts.map((post) => (
         <Post
           key={post.id}
           id={post.id}
+          Activity={post.Activity}
           Distance={post.Distance}
           duration={post.duration}
           location={post.location}
