@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import "./input.css";
 
 import Activity from "./activity/activity";
+import { number } from "prop-types";
 
 function Input({ addPost }) {
-  const [activity, setActivity] = useState("");
+  const [valueActivity, setActivity] = useState("");
   const [valueDistance, setValueDistance] = useState("");
-  const [valueDuration, setValueDuration] = useState("");
+  const [valueDuration, setValueDuration] = useState("00:00 ");
   const [valueLocation, setValueLocation] = useState("");
   const [valueTimeStamp, setValueTimeStamp] = useState(new Date());
   const [valueDesciption, setValueDesciption] = useState("");
@@ -23,29 +24,36 @@ function Input({ addPost }) {
     setValueLocation(e.target.value);
   }
 
-  function onChangeTimeStamp(e) {
-    setValueTimeStamp(e.target.value);
+  function onChangeTimeStamp() {
+    setValueTimeStamp(new Date());
   }
 
   function onChangeDesciption(e) {
     setValueDesciption(e.target.value);
   }
 
-  function Submit(props) {
-    console.log("hello world");
+  function submit(event) {
+    event.preventDefault();
     const valueInput = {
-      Activity: activity,
+      Activity: valueActivity,
       Distance: valueDistance,
-      duration: valueDuration,
-      location: valueLocation,
-      timeStapm: valueTimeStamp,
+      Duration: valueDuration,
+      Location: valueLocation,
+      Description: valueDesciption,
+      TimeStamp: valueTimeStamp,
     };
 
-    addPost(valueInput);
-
-    if (valueInput.Activity === null) {
-      alert("First name must be filled out");
+    if (
+      valueInput.Activity === "" ||
+      (valueInput.Distance === "" && valueInput.Distance === number ) ||
+      (valueInput.Duration === "" && valueInput.Duration === number) ||
+      valueInput.Location === "" ||
+      valueDesciption === ""
+    ) {
+      alert("Invalid Value. Please fill data");
       return false;
+    } else {
+      addPost(valueInput);
     }
   }
 
@@ -79,7 +87,7 @@ function Input({ addPost }) {
               type=""
               value={valueDuration}
               onChange={onChangeDuration}
-              placeholder="Enter your Duration (Hr : mm)"
+              placeholder="Hr : mm : ss"
             ></input>
           </div>
         </div>
@@ -118,7 +126,7 @@ function Input({ addPost }) {
           <button
             className="creat-post"
             onChange={onChangeTimeStamp}
-            onClick={Submit}
+            onClick={(event) => submit(event)}
           >
             Submit
           </button>
@@ -127,9 +135,5 @@ function Input({ addPost }) {
     </form>
   );
 }
-
-// Input.propTypes = {
-//   addPost: PropTypes.func.isRequired,
-// };
 
 export default Input;

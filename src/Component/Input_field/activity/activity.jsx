@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./activity.css";
 
 function Activity(props) {

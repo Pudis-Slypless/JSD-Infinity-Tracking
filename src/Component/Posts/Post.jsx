@@ -1,13 +1,13 @@
-import PropTypes from "prop-types";
 import "./Post.css";
 
 function Post({
   id,
-  activity,
+  Activity,
   Distance,
-  duration,
-  location,
-  timeStamp,
+  Duration,
+  Location,
+  Description,
+  TimeStamp,
   deletePost,
 }) {
   return (
@@ -15,20 +15,14 @@ function Post({
       <button className="Post__delete" onClick={() => deletePost(id)}>
         x
       </button>
-      <div className="postActivity">{activity}</div>
-      <div className="postDistance">Disrance : {Distance}</div>
-      <div className="postDuration">Duration : {duration}</div>
-      <div className="postLocation">Location : {location}</div>
-      <div className="postTimeStamp">Date : {timeStamp}</div>
-
+      <div className="postActivity">{Activity}</div>
+      <div className="postDistance">Distance : {Distance}</div>
+      <div className="postDuration">Duration : {Duration}</div>
+      <div className="postLocation">Location : {Location}</div>
+      <div className="postDescription">Description : {Description}</div>
+      <div className="postTimeStamp">Date : {TimeStamp?.toString()}</div>
     </div>
   );
 }
-
-Post.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  deletePost: PropTypes.func.isRequired,
-};
 
 export default Post;
