@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    justify-content: space-around;
+    margin-right: 100px;
+    padding: 50px;
+  }
+
+  .overFlowBox {
+    overflow-y: 'scroll';
+    border:'1px solid red';
+    width:'auto';
+    float: 'left';
+    height:'500px';
+    position:'relative'
+  }

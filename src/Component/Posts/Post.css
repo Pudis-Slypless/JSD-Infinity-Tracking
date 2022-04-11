@@ -1,0 +1,29 @@
+.Post {
+  border: 1px solid hsl(216, 8%, 88%);
+  border-radius: 10px;
+  width: 576px;
+  margin: 50px auto;
+  background-color: #ffffff;
+  padding: 15px;
+}
+
+.Post__image {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.Post__title {
+  float: left;
+  font-size: medium;
+}
+
+.Post__delete {
+  border: none;
+  background: none;
+  font-size: medium;
+
+  padding: 0;
+  float: right;
+
+  cursor: pointer;
+}
