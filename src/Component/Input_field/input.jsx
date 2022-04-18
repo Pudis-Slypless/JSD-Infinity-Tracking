@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import "./input.css";
+import { client } from "../../api/API";
 
 import Activity from "./activity/activity";
 import { number } from "prop-types";
+import "./input.css";
 
 function Input({ addPost }) {
   const [valueActivity, setActivity] = useState("");
   const [valueDistance, setValueDistance] = useState("");
-  const [valueDuration, setValueDuration] = useState("00:00 ");
+  const [valueDuration, setValueDuration] = useState("");
   const [valueLocation, setValueLocation] = useState("");
   const [valueTimeStamp, setValueTimeStamp] = useState(new Date());
   const [valueDesciption, setValueDesciption] = useState("");
@@ -32,28 +33,31 @@ function Input({ addPost }) {
     setValueDesciption(e.target.value);
   }
 
-  function submit(event) {
+  async function submit(event) {
     event.preventDefault();
     const valueInput = {
-      Activity: valueActivity,
-      Distance: valueDistance,
-      Duration: valueDuration,
-      Location: valueLocation,
-      Description: valueDesciption,
-      TimeStamp: valueTimeStamp,
+      activity: valueActivity,
+      distance: valueDistance,
+      duration: valueDuration,
+      location: valueLocation,
+      description: valueDesciption,
+      timestamp: valueTimeStamp,
     };
 
     if (
-      valueInput.Activity === "" ||
-      (valueInput.Distance === "" && valueInput.Distance === number ) ||
-      (valueInput.Duration === "" && valueInput.Duration === number) ||
-      valueInput.Location === "" ||
+      valueInput.activity === "" ||
+      (valueInput.distance === "" && valueInput.distance === number) ||
+      (valueInput.duration === "" && valueInput.duration === number) ||
+      valueInput.location === "" ||
       valueDesciption === ""
     ) {
       alert("Invalid Value. Please fill data");
       return false;
     } else {
-      addPost(valueInput);
+      // post axios
+      const res = await client.post("/users/me/records", valueInput);
+      //  await client.post("/users/me/records", valueInput);
+      // addPost(valueInput);
     }
   }
 

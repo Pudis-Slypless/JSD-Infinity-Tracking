@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React from "react";
+import { useUserRecord } from "../../hooks/useUserRecord";
 
 import "./main.css";
 
@@ -8,43 +9,25 @@ import Post from "../../Component/Posts/Post";
 
 let id = 1;
 
-// useEffect(() => {
-//   async(() => {
-//     const response = await client.get('./user/me/records');
-//     console.log(response.status);
-//     console.log(response.data);
-
-//     if (response.status < 300) {
-//       setPosts(response.data);
-//     } else {
-//       alert('Can not to connect')
-//     }
-
-//   })();
-
-//     const intervalId = setInterval(() => {}, 5000);
-
-// }, []);
-
 function Main(props) {
-  const [posts, setPosts] = useState([]);
+  const [posts, setPosts] = useUserRecord([]);
 
   function addPost({
-    Activity,
-    Distance,
-    Duration,
-    Location,
-    Description,
-    TimeStamp,
+    activity,
+    distance,
+    duration,
+    location,
+    description,
+    timestamp,
   }) {
     const newPost = {
       id,
-      Activity,
-      Distance,
-      Duration,
-      Location,
-      Description,
-      TimeStamp,
+      activity,
+      distance,
+      duration,
+      location,
+      description,
+      timestamp,
     };
     console.log(newPost);
     setPosts([newPost, ...posts]);
@@ -60,18 +43,20 @@ function Main(props) {
     <div className="App">
       <Navbar />
       <div className="container">
-        <Input addPost={addPost} />
+        <div className="containerAddpost">
+          <Input addPost={addPost} />
+        </div>
         <div className="overFlowBox">
           {posts.map((post) => (
             <Post
-              key={post.id}
+              key={post._id}
               id={post.id}
-              Activity={post.Activity}
-              Distance={post.Distance}
-              Duration={post.Duration}
-              Location={post.Location}
-              Description={post.Description}
-              TimeStamp={post.TimeStamp}
+              activity={post.activity}
+              distance={post.distance}
+              duration={post.duration}
+              location={post.location}
+              description={post.description}
+              timestamp={post.timestamp}
               deletePost={deletePost}
             />
           ))}

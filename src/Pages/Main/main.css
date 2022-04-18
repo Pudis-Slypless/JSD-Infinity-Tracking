@@ -5,11 +5,17 @@
     padding: 50px;
   }
 
+  .containerAddpost{
+    margin-right: 50px ;
+
+  }
+
   .overFlowBox {
+  
     overflow-y: 'scroll';
-    border:'1px solid red';
+    /* border:'1px solid red'; */
     width:'auto';
-    float: 'left';
+    /* float: 'left'; */
     height:'500px';
-    position:'relative'
+    /* position:'relative' */
   }

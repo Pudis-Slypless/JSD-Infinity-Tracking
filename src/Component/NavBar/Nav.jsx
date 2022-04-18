@@ -2,9 +2,9 @@ import React from "react";
 import "./Nav.css";
 
 const menuList = [
-  { src: "Icons/Plus.svg", alt: "Add activity" },
-  { src: "Icons/history.svg", alt: "history" },
-  { src: "Icons/home.svg", alt: "noticfications" },
+  // { src: "Icons/Plus.svg", alt: "Add activity" },
+  // { src: "Icons/history.svg", alt: "history" },
+  // { src: "Icons/home.svg", alt: "noticfications" },
   {
     src: "Icons/profile.svg",
     alt: "profile",
@@ -34,7 +34,7 @@ function Navbar() {
             <h3 className="name">Infinity Tracking </h3>
           </div>
           <div className="col-6">
-            <ul className="d-flex justify-content-end align-items-center">
+            <ul className="d-flex justify-content-end align-items-flex-end">
               {menuList.map((menu, index) => (
                 <Menu src={menu.src} alt={menu.alt} key={index} />
               ))}
