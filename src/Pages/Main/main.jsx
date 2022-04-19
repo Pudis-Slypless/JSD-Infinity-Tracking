@@ -6,6 +6,7 @@ import "./main.css";
 import Navbar from "../../Component/NavBar/Nav";
 import Input from "../../Component/Input_field/input";
 import Post from "../../Component/Posts/Post";
+import { client } from "../../api/API";
 
 let id = 1;
 
@@ -34,11 +35,12 @@ function Main(props) {
     id += 1;
   }
 
-  function deletePost(id) {
-    const updatePosts = posts.filter((post) => post.id !== id);
-    setPosts(updatePosts);
+  async function deletePost(id) {
+    const res = await client.delete(`/users/me/records/${id}`);
+    window.location.reload();
   }
 
+  console.log(posts);
   return (
     <div className="App">
       <Navbar />
@@ -50,7 +52,7 @@ function Main(props) {
           {posts.map((post) => (
             <Post
               key={post._id}
-              id={post.id}
+              id={post._id}
               activity={post.activity}
               distance={post.distance}
               duration={post.duration}

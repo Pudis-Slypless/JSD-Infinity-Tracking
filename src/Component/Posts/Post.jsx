@@ -10,6 +10,7 @@ function Post({
   timestamp,
   deletePost,
 }) {
+
   return (
     <div className="Post">
       <button className="Post__delete" onClick={() => deletePost(id)}>

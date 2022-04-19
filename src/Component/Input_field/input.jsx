@@ -56,8 +56,7 @@ function Input({ addPost }) {
     } else {
       // post axios
       const res = await client.post("/users/me/records", valueInput);
-      //  await client.post("/users/me/records", valueInput);
-      // addPost(valueInput);
+      window.location.reload();
     }
   }
 
