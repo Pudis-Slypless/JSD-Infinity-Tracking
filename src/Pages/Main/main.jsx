@@ -36,7 +36,7 @@ function Main(props) {
   }
 
   async function deletePost(id) {
-    const res = await client.delete(`/users/me/records/${id}`);
+    await client.delete(`/users/me/records/${id}`);
     window.location.reload();
   }
 
