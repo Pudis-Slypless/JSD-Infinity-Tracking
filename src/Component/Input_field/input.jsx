@@ -4,6 +4,7 @@ import { client } from "../../api/API";
 import Activity from "./activity/activity";
 import { number } from "prop-types";
 import "./input.css";
+import TimeInput from "./time/time";
 
 function Input({ addPost }) {
   const [valueActivity, setActivity] = useState("");
@@ -17,8 +18,8 @@ function Input({ addPost }) {
     setValueDistance(e.target.value);
   }
 
-  function onChangeDuration(e) {
-    setValueDuration(e.target.value);
+  function onChangeDuration(value) {
+    setValueDuration(value);
   }
 
   function onChangeLocation(e) {
@@ -47,9 +48,8 @@ function Input({ addPost }) {
     if (
       valueInput.activity === "" ||
       (valueInput.distance === "" && valueInput.distance === number) ||
-      (valueInput.duration === "" && valueInput.duration === number) ||
-      valueInput.location === "" ||
-      valueDesciption === ""
+      valueInput.duration === "" ||
+      valueInput.location === ""
     ) {
       alert("Invalid Value. Please fill data");
       return false;
@@ -85,13 +85,17 @@ function Input({ addPost }) {
             <label placeholder="Duration">Duration</label>
           </div>
           <div className="box">
-            <input
+            <TimeInput
+              className="Duration"
+              onChangeDuration={onChangeDuration}
+            />
+            {/* <input
               className="Duration"
               type=""
               value={valueDuration}
               onChange={onChangeDuration}
-              placeholder="Hr : mm : ss"
-            ></input>
+              placeholder="How long minute time"
+            >{TimeInput}</input> */}
           </div>
         </div>
 

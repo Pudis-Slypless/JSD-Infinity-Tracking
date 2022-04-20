@@ -5,25 +5,50 @@
   margin: 20px 10px;
   background-color: #e9f9ffe6;
   padding: 15px;
+  display: flex;
+  position: relative;
+  align-items: center;
 }
 
-.Post__image {
-  width: 100%;
-  margin-top: 15px;
+.postActivity {
+  text-align: left;
+  font-size: xx-large;
+  font-weight: 600;
+  margin: 0px 0 5px 10px;
 }
 
-.Post__title {
-  float: left;
-  font-size: medium;
-}
-
-.Post__delete {
+.PostDelete {
   border: none;
   background: none;
   font-size: medium;
+  position: absolute;
+  top:20px;
+  right: 20px;
 
   padding: 0;
   float: right;
 
   cursor: pointer;
+}
+
+.show-activity{
+  width: 60px;
+  height: 60px;
+  margin: 0 40px;
+}
+
+.subContent{
+  display: flex;
+}
+
+.titleContent{
+  min-width: 90px;
+  text-align: right;
+  margin-right: 10px;
+  font-weight: 600;
+  
+}
+
+.valueContent{
+
 }

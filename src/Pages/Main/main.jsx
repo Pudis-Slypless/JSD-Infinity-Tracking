@@ -58,7 +58,7 @@ function Main(props) {
               duration={post.duration}
               location={post.location}
               description={post.description}
-              timestamp={post.timestamp}
+              timestamp={new Date(post.timestamp).toLocaleDateString()}
               deletePost={deletePost}
             />
           ))}
