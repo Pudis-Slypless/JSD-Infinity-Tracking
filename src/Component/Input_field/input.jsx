@@ -81,7 +81,7 @@ function Input({ addPost }) {
         </div>
 
         <div className="topicBox">
-          <div>
+          <div className="label">
             <label placeholder="Duration">Duration</label>
           </div>
           <div className="box">
@@ -96,7 +96,7 @@ function Input({ addPost }) {
         </div>
 
         <div className="topicBox">
-          <div>
+          <div className="label">
             <label placeholder="Location">Location</label>
           </div>
           <div className="box">
@@ -111,7 +111,7 @@ function Input({ addPost }) {
         </div>
 
         <div className="topicBox">
-          <div>
+          <div className="label">
             <label placeholder="Desciption">Desciption</label>
           </div>
           <div className="box">
