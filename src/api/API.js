@@ -8,5 +8,11 @@ export const client = axios.create({
 
 export const getRecords = async () => {
   const response = await client.get("/users/me/records");
+  sessionStorage.setItem("response", JSON.stringify(response));
   return response;
 };
+
+// export const putRecords = async () => {
+//   const response = await client.put(`/users/me/records/${id}`, valueInput)
+//   return response;
+// }

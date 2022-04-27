@@ -1,8 +1,12 @@
 import "./activity.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function Activity(props) {
   const [types, setTypes] = useState("");
+
+  useEffect(() => {
+    setTypes(props.value);
+  }, [props]);
 
   const onCLickImage = (type) => {
     props.setActivity(type);
@@ -13,42 +17,58 @@ function Activity(props) {
 
   return (
     <div className="activityField">
-      <div className={`buttonActivity ${types === "run" && "clicked"}`}>
+      <div
+        className={` ${props.disabled && "disabled"} buttonActivity ${
+          types === "run" && "clicked"
+        }`}
+      >
         <img
           src="Icons/running.svg"
           alt="run"
           className="icon-activity"
-          onClick={() => onCLickImage("run")}
+          onClick={props.disabled ? () => {} : () => onCLickImage("run")}
         />
       </div>
 
-      <div className={`buttonActivity ${types === "walk" && "clicked"}`}>
+      <div
+        className={` ${props.disabled && "disabled"} buttonActivity ${
+          types === "walk" && "clicked"
+        }`}
+      >
         <img
           src="Icons/walk.svg"
           alt="walk"
           className="icon-activity"
           activity="walk"
-          onClick={() => onCLickImage("walk")}
+          onClick={props.disabled ? () => {} : () => onCLickImage("walk")}
         />
       </div>
 
-      <div className={`buttonActivity ${types === "swim" && "clicked"}`}>
+      <div
+        className={` ${props.disabled && "disabled"} buttonActivity ${
+          types === "swim" && "clicked"
+        }`}
+      >
         <img
           src="Icons/swimmer.svg"
           alt="swimmer"
           className="icon-activity"
           activity="swim"
-          onClick={() => onCLickImage("swim")}
+          onClick={props.disabled ? () => {} : () => onCLickImage("swim")}
         />
       </div>
 
-      <div className={`buttonActivity ${types === "bike" && "clicked"}`}>
+      <div
+        className={`${props.disabled && "disabled"} buttonActivity  ${
+          props.disabled && "disabled"
+        }  ${types === "bike" && "clicked"}`}
+      >
         <img
           src="Icons/biking.svg"
           alt="biking"
           className="icon-activity"
           activity="bike"
-          onClick={() => onCLickImage("bike")}
+          onClick={props.disabled ? () => {} : () => onCLickImage("bike")}
         />
       </div>
     </div>

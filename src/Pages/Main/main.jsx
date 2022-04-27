@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUserRecord } from "../../hooks/useUserRecord";
 
 import "./main.css";
@@ -12,6 +12,14 @@ let id = 1;
 
 function Main(props) {
   const [posts, setPosts] = useUserRecord([]);
+  const [valueRecord, setValueRecord] = useState({
+    id: "",
+    distance: "",
+    duration: "",
+    description: "",
+    location: "",
+    activity: "",
+  });
 
   function addPost({
     activity,
@@ -35,18 +43,29 @@ function Main(props) {
     id += 1;
   }
 
+  function handleUpdateRecord(value) {
+    setValueRecord({
+      id: value.id,
+      distance: value.distance,
+      duration: value.duration,
+      description: value.description,
+      location: value.location,
+      activity: value.activity,
+      timeStamp: value.timestamp,
+    });
+  }
+
   async function deletePost(id) {
     await client.delete(`/users/me/records/${id}`);
     window.location.reload();
   }
 
-  console.log(posts);
   return (
     <div className="App">
       <Navbar />
       <div className="container">
         <div className="containerAddpost">
-          <Input addPost={addPost} />
+          <Input addPost={addPost} valueRecord={valueRecord} />
         </div>
         <div className="overFlowBox">
           {posts.map((post) => (
@@ -59,6 +78,7 @@ function Main(props) {
               location={post.location}
               description={post.description}
               timestamp={new Date(post.timestamp).toLocaleDateString()}
+              handleUpdateRecord={handleUpdateRecord}
               deletePost={deletePost}
             />
           ))}

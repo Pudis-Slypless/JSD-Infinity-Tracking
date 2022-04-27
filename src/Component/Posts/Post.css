@@ -24,12 +24,29 @@
   position: absolute;
   top:20px;
   right: 20px;
+  font-weight: 700;
 
   padding: 0;
   float: right;
 
   cursor: pointer;
 }
+
+.EditPost {
+  border: none;
+  background: none;
+  width: 15px;
+  font-size: medium;
+  position: absolute;
+  top:23px;
+  right: 40px;
+
+  padding: 0;
+  float: right;
+
+  cursor: pointer;
+}
+
 
 .show-activity{
   width: 60px;
@@ -47,8 +64,4 @@
   margin-right: 10px;
   font-weight: 600;
   
-}
-
-.valueContent{
-
 }

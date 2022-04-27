@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { client } from "../../api/API";
 
 import Activity from "./activity/activity";
@@ -6,13 +6,23 @@ import { number } from "prop-types";
 import "./input.css";
 import TimeInput from "./time/time";
 
-function Input({ addPost }) {
+function Input({ addPost, valueRecord = {} }) {
   const [valueActivity, setActivity] = useState("");
   const [valueDistance, setValueDistance] = useState("");
   const [valueDuration, setValueDuration] = useState("");
   const [valueLocation, setValueLocation] = useState("");
   const [valueTimeStamp, setValueTimeStamp] = useState(new Date());
-  const [valueDesciption, setValueDesciption] = useState("");
+  const [valueDescription, setValueDescription] = useState("");
+
+  useEffect(() => {
+    // if (valueRecord !== {}) {
+    setActivity(valueRecord.activity);
+    setValueDistance(valueRecord.distance);
+    setValueDuration(valueRecord.duration);
+    setValueLocation(valueRecord.location);
+    setValueDescription(valueRecord.description);
+    // }
+  }, [valueRecord]);
 
   function onChangeDistance(e) {
     setValueDistance(e.target.value);
@@ -30,8 +40,8 @@ function Input({ addPost }) {
     setValueTimeStamp(new Date());
   }
 
-  function onChangeDesciption(e) {
-    setValueDesciption(e.target.value);
+  function onChangeDescription(e) {
+    setValueDescription(e.target.value);
   }
 
   async function submit(event) {
@@ -41,7 +51,7 @@ function Input({ addPost }) {
       distance: valueDistance,
       duration: valueDuration,
       location: valueLocation,
-      description: valueDesciption,
+      description: valueDescription,
       timestamp: valueTimeStamp,
     };
 
@@ -55,7 +65,11 @@ function Input({ addPost }) {
       return false;
     } else {
       // post axios
-      await client.post("/users/me/records", valueInput);
+      if (valueRecord.id === "") {
+        await client.post("/users/me/records", valueInput);
+      } else {
+        await client.put(`/users/me/records/${valueRecord.id}`, valueInput);
+      }
       window.location.reload();
     }
   }
@@ -63,7 +77,12 @@ function Input({ addPost }) {
   return (
     <form>
       <div className="inputField">
-        <Activity className="iconAc" setActivity={setActivity} />
+        <Activity
+          className="iconAc"
+          value={valueActivity}
+          disabled={!!valueRecord.id}
+          setActivity={setActivity}
+        />
 
         <div className="topicBox">
           <div className="label">
@@ -87,15 +106,9 @@ function Input({ addPost }) {
           <div className="box">
             <TimeInput
               className="Duration"
+              value={valueDuration}
               onChangeDuration={onChangeDuration}
             />
-            {/* <input
-              className="Duration"
-              type=""
-              value={valueDuration}
-              onChange={onChangeDuration}
-              placeholder="How long minute time"
-            >{TimeInput}</input> */}
           </div>
         </div>
 
@@ -109,6 +122,7 @@ function Input({ addPost }) {
               type=""
               value={valueLocation}
               onChange={onChangeLocation}
+              disabled={valueRecord.id}
               placeholder="Enter your Location"
             ></input>
           </div>
@@ -116,15 +130,15 @@ function Input({ addPost }) {
 
         <div className="topicBox">
           <div className="label">
-            <label placeholder="Desciption">Desciption</label>
+            <label placeholder="Description">Description</label>
           </div>
           <div className="box">
             <input
               className="Desciption"
               type="text"
-              value={valueDesciption}
-              onChange={onChangeDesciption}
-              placeholder="Enter your Desciption"
+              value={valueDescription}
+              onChange={onChangeDescription}
+              placeholder="Enter your Description"
             ></input>
           </div>
         </div>
